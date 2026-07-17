@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; script-src 'self'">
+<title>LaTeX 公式生成器</title>
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="vendor/mathlive/mathlive-static.css">
+<link rel="stylesheet" href="vendor/mathlive/mathlive-fonts.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="titlebar" id="titlebar">
+  <div class="traffic">
+    <button class="tl close" id="btnClose" title="关闭"></button>
+    <button class="tl min" id="btnMin" title="最小化"></button>
+    <button class="tl max" id="btnMax" title="最大化"></button>
+  </div>
+  <div class="titlebar-title">LaTeX 公式生成器</div>
+  <div class="titlebar-actions">
+    <button id="btnTheme" class="icon-btn" title="切换浅色 / 深色"></button>
+  </div>
+</header>
+
+<main class="workspace">
+<div class="container">
+
+  <!-- 结构模板 -->
+  <section class="card">
+    <div class="card-head">
+      <h2>公式结构</h2>
+      <span class="hint">点击插入到光标处 · 按 Tab 在方框间跳转</span>
+    </div>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <!-- 符号面板 -->
+  <section class="card">
+    <div class="card-head">
+      <h2>符号面板</h2>
+      <span class="hint" id="symCount"></span>
+    </div>
+    <div class="seg" id="segTabs"></div>
+    <div class="grid" id="symGrid"></div>
+  </section>
+
+  <!-- 编辑区（所见即所得） -->
+  <section class="card" id="editCard">
+    <div class="card-head">
+      <h2>编辑区</h2>
+      <div class="head-actions">
+        <span class="hint">键入 / 自动变分式 · ^ 上标 · \alpha 空格得 α</span>
+        <div class="mini-seg" id="modeSeg">
+          <button data-m="0" class="on">行内</button><button data-m="1">行间</button>
+        </div>
+        <button class="ghost-btn" id="fontMinus" title="缩小字号">A−</button>
+        <button class="ghost-btn" id="fontPlus" title="放大字号">A＋</button>
+        <button class="ghost-btn" id="btnSrc" title="查看 / 编辑 LaTeX 源码">&lt;/&gt; 源码</button>
+        <button class="ghost-btn" id="btnClear">清空</button>
+      </div>
+    </div>
+    <div class="mf-stage" id="mfStage">
+      <math-field id="mf"></math-field>
+      <div class="mf-ghost" id="mfGhost">点这里开始编辑 —— 点上方模板 / 符号插入，或直接键入：x^2、a/b、\alpha …</div>
+    </div>
+    <div class="src-wrap" id="srcWrap">
+      <textarea id="srcEditor" class="src-editor" spellcheck="false" autocomplete="off"
+        placeholder="LaTeX 源码 —— 与上方公式实时双向同步，可直接粘贴或编辑"></textarea>
+    </div>
+  </section>
+
+  <!-- 输出 -->
+  <section class="card">
+    <div class="card-head">
+      <h2>LaTeX 输出</h2>
+      <span class="hint">Ctrl + Enter 快速复制</span>
+    </div>
+    <pre class="out" id="out"><span class="out-placeholder">生成的 LaTeX 代码会显示在这里</span></pre>
+    <div class="actions">
+      <button class="primary-btn" id="copyRaw">复制代码</button>
+      <button class="pill-btn" id="copyInline">复制 $…$</button>
+      <button class="pill-btn" id="copyDisplay">复制 $$…$$</button>
+      <span class="flex-spacer"></span>
+      <button class="pill-btn" id="copyImg">复制图片</button>
+      <button class="pill-btn" id="exportPng">导出 PNG</button>
+    </div>
+  </section>
+
+  <!-- 公式库 -->
+  <section class="card">
+    <div class="card-head">
+      <div class="mini-seg" id="libSeg">
+        <button data-t="history" class="on">历史记录</button><button data-t="examples">常用公式</button>
+      </div>
+      <button class="ghost-btn" id="clearHistory">清空历史</button>
+    </div>
+    <div class="lib" id="libList"></div>
+  </section>
+
+  <p class="foot">完全本地运行 · 无需联网 · 无需安装 · 免管理员权限</p>
+
+</div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="vendor/katex/katex.min.js"></script>
+<script src="vendor/mathlive/mathlive.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
