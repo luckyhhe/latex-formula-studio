@@ -19,9 +19,6 @@
 - **苹果风界面**：浅色 / 深色双主题，自绘红绿灯窗口按钮，圆角卡片与细腻动效
 - **绿色便携**：完全离线运行，不联网、不写注册表、解压即用
 
-## 📦 下载（Windows 便携版）
-
-前往 [**Releases**](https://github.com/luckyhhe/latex-formula-studio/releases) 下载压缩包，解压到任意位置后双击 **`LaTeX Formula Studio.exe`** 即可 —— 无需安装、无需管理员权限。
 
 > 💡 粘贴到 Word：插入公式 → 左上角切换为「LaTeX」模式 → 粘贴代码即可转成 Word 公式。
 
