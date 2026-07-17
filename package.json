@@ -1,0 +1,31 @@
+{
+  "name": "latex-formula-studio",
+  "productName": "LaTeX Formula Studio",
+  "version": "2.0.0",
+  "description": "苹果风 LaTeX 公式生成器 —— 所见即所得、免安装、完全离线",
+  "main": "main.js",
+  "author": "luckyhhe",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luckyhhe/latex-formula-studio.git"
+  },
+  "keywords": ["latex", "formula", "equation", "editor", "wysiwyg", "electron", "mathlive", "katex"],
+  "scripts": {
+    "start": "electron .",
+    "sync-vendor": "node scripts/sync-vendor.js",
+    "postinstall": "node scripts/sync-vendor.js",
+    "smoke": "SMOKE_TEST=1 electron .",
+    "pack:win": "electron-packager . \"LaTeX Formula Studio\" --platform=win32 --arch=x64 --out=dist --overwrite --asar",
+    "pack:mac": "electron-packager . \"LaTeX Formula Studio\" --platform=darwin --arch=arm64,x64 --out=dist --overwrite --asar",
+    "pack:linux": "electron-packager . \"LaTeX Formula Studio\" --platform=linux --arch=x64 --out=dist --overwrite --asar"
+  },
+  "dependencies": {
+    "katex": "^0.16.21",
+    "mathlive": "^0.110.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "^18.3.6",
+    "electron": "^37.2.0"
+  }
+}
